@@ -51,6 +51,9 @@ async function run() {
       case 'cancelled':
         await client.cancel(text);
         break;
+      case 'trigger':
+        await client.trigger(text);
+        break;
       case 'custom':
         var payload: IncomingWebhookSendArguments = eval(
           `payload = ${rawPayload}`,

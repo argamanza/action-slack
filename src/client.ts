@@ -64,6 +64,15 @@ export class Client {
     this.send(template);
   }
 
+  public async trigger(text: string) {
+    const template = await this.payloadTemplate();
+    template.attachments[0].color = '#faaa34';
+    template.text += ':zap: Triggered Github Actions\n';
+    template.text += text;
+
+    this.send(template);
+  }
+
   public async send(payload: string | IncomingWebhookSendArguments) {
     core.debug(JSON.stringify(github.context, null, 2));
     await this.webhook.send(payload);
